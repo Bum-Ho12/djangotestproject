@@ -36,6 +36,17 @@ jobs:
           python manage.py collectstatic --noinput
 
       - name: Run Migrations
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+          DB_HOST: ${{ secrets.DB_HOST }}
+          AUTH_CLIENT_ID: ${{ secrets.AUTH_CLIENT_ID }}
+          AUTH_CLIENT_SECRET: ${{ secrets.AUTH_CLIENT_SECRET }}
+          AT_KEY: ${{ secrets.AT_KEY }}
+          TEST_NUMBER2: ${{ secrets.TEST_NUMBER2 }}
+          SHORTCODE: ${{ secrets.SHORTCODE }}
         run: |
           python manage.py makemigrations
           python manage.py migrate
